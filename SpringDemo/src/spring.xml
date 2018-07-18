@@ -6,16 +6,14 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
 	xmlns:context="http://www.springframework.org/schema/context">
-	
-	<context:annotation-config/>
+
+	<context:annotation-config />
 
 
 
-	<!-- <bean id="triangle" class="org.koushik.javabrains.Triangle">
-		<property name="pointA" ref="pointA"></property>
-		<property name="pointB" ref="pointB"></property>
-		<property name="pointC" ref="pointC"></property>
-	</bean> -->
+	<!-- <bean id="triangle" class="org.koushik.javabrains.Triangle"> <property 
+		name="pointA" ref="pointA"></property> <property name="pointB" ref="pointB"></property> 
+		<property name="pointC" ref="pointC"></property> </bean> -->
 
 
 
@@ -32,15 +30,16 @@
 		<property name="y" value="0"></property>
 	</bean>
 
-	<bean id="pointC" class="org.koushik.javabrains.Point">
+	<bean id="center" class="org.koushik.javabrains.Point">
 		<property name="x" value="20"></property>
 		<property name="y" value="0"></property>
 	</bean>
 
 	<alias name="triangle" alias="triangle-alias" />
 
-	<bean id="circle" class="org.koushik.javabrains.Circle">
-	</bean>
+	<context:annotation-config />
+	<context:component-scan
+		base-package="org.koushik.javabrains" />
 
 
 </beans>
