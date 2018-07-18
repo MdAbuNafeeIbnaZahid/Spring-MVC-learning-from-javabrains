@@ -3,6 +3,7 @@ package org.koushik.javabrains;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanFactory;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.core.io.FileSystemResource;
 
@@ -16,18 +17,17 @@ public class DrawingApp {
 		
 		System.out.println("starting of main method");
 		
-		ApplicationContext context1 = new ClassPathXmlApplicationContext("spring.xml");
-		ApplicationContext context2 = new ClassPathXmlApplicationContext("spring.xml");
-		System.out.println("ApplicationContext created");
+		AbstractApplicationContext context1 = new ClassPathXmlApplicationContext("spring.xml");
+		context1.registerShutdownHook();
+		
+//		ApplicationContext context2 = new ClassPathXmlApplicationContext("spring.xml");
+//		System.out.println("ApplicationContext created");
 		
 		
 		System.out.println("autowire");
-		Triangle triangle1 = (Triangle) context1.getBean("triangle");
-		Triangle triangle2 = (Triangle) context2.getBean("triangle");
+		Shape shape = (Shape) context1.getBean("circle");
 		
-		System.out.println( triangle1 );
-		System.out.println( triangle2 );
-		
+		shape.draw();
 	}
 
 }

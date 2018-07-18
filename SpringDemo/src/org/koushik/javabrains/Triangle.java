@@ -2,31 +2,16 @@ package org.koushik.javabrains;
 
 import java.util.List;
 
-import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.BeanNameAware;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
+import org.springframework.beans.factory.DisposableBean;
+import org.springframework.beans.factory.InitializingBean;
 
-public class Triangle implements ApplicationContextAware, BeanNameAware {
+
+
+public class Triangle implements Shape{
+
 	private Point pointA;
 	private Point pointB;
 	private Point pointC;
-	
-	private ApplicationContext context = null;
-	private String beanName;
-	
-	
-	
-	public Triangle() {
-		System.out.println("default constructor of Triangle");
-	}
-
-	public Triangle(Point pointA, Point pointB, Point pointC) {
-		System.out.println("3 constructor of Triangle");
-		this.pointA = pointA;
-		this.pointB = pointB;
-		this.pointC = pointC;
-	}
 
 	public Point getPointA() {
 		return pointA;
@@ -43,6 +28,8 @@ public class Triangle implements ApplicationContextAware, BeanNameAware {
 	public void setPointB(Point pointB) {
 		this.pointB = pointB;
 	}
+	
+	
 
 	public Point getPointC() {
 		return pointC;
@@ -52,21 +39,40 @@ public class Triangle implements ApplicationContextAware, BeanNameAware {
 		this.pointC = pointC;
 	}
 
+	public Triangle() {
+		System.out.println("default constructor of Triangle");
+	}
+
 	@Override
 	public String toString() {
-		return "Triangle [pointA=" + pointA + ", pointB=" + pointB + ", pointC=" + pointC + ", beanName=" + beanName
-				+ "]";
+		return "Triangle [pointA=" + pointA + ", pointB=" + pointB + ", pointC=" + pointC + "]";
 	}
+	
+	public void myInit() {
+		System.out.println("inside myInit method of Triangle");
+	}
+	
+	public void cleanUp() {
+		System.out.println("inside my cleanUp method of Triangle");
+	}
+//
+//	@Override
+//	public void afterPropertiesSet() throws Exception {
+//		System.out.println("InitializingBean init method called for Traingle");
+//	}
+//
+//	@Override
+//	public void destroy() throws Exception {
+//		System.out.println("DisposableBean destroy method called for the Triangle");
+//		
+//	}
+
+	
 
 	@Override
-	public void setApplicationContext(ApplicationContext context) throws BeansException {
-		this.context = context;
+	public void draw() {
+		System.out.println("Drawing Triangle ");
+		System.out.println( toString() );
 	}
-
-	@Override
-	public void setBeanName(String beanName) {
-		this.beanName = beanName;
-	}
-
 
 }
