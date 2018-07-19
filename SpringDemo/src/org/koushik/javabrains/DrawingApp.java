@@ -12,22 +12,10 @@ public class DrawingApp {
 
 	public static void main(String[] args) {
 		
-//		BeanFactory factory = new XmlBeanFactory(new FileSystemResource("spring.xml"));
-//		System.out.println("beanFactory created");
-		
-		System.out.println("starting of main method");
-		
-		AbstractApplicationContext context1 = new ClassPathXmlApplicationContext("spring.xml");
-		context1.registerShutdownHook();
-		
-//		ApplicationContext context2 = new ClassPathXmlApplicationContext("spring.xml");
-//		System.out.println("ApplicationContext created");
-		
-		
-		System.out.println("autowire");
-		Shape shape = (Shape) context1.getBean("circle");
-		
+		AbstractApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
+		Shape shape = (Shape) context.getBean("circle");
 		shape.draw();
+		
 	}
 
 }
